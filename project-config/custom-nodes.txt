@@ -1,0 +1,9 @@
+# Supported formats:
+#   registry:<node-name>
+#   git:<repo-url>
+#   git:<repo-url>|<branch>
+#
+# Replace these examples with the nodes required by your workflow.
+registry:comfyui-manager
+# git:https://github.com/example/ComfyUI-Custom-Node.git
+# git:https://github.com/example/ComfyUI-Custom-Node.git|main

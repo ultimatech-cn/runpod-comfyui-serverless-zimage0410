@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.specstory/
+.tmp/
+.tmp_pdf_tools/
+logs/
+output/
+data/
+.env
+*.local

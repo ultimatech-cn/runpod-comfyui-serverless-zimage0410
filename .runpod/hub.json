@@ -1,0 +1,126 @@
+{
+  "title": "ComfyUI Serverless Template",
+  "description": "Generic RunPod Serverless template for ComfyUI workflows with config-driven custom nodes and Network Volume models.",
+  "type": "serverless",
+  "category": "image",
+  "iconUrl": "",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 80,
+    "gpuIds": "ADA_24",
+    "gpuCount": 1,
+    "allowedCudaVersions": ["12.8"],
+    "env": [
+      {
+        "key": "COMFY_ORG_API_KEY",
+        "input": {
+          "name": "Comfy.org API Key",
+          "type": "string",
+          "description": "Optional API key for Comfy.org API nodes.",
+          "default": "",
+          "advanced": true
+        }
+      },
+      {
+        "key": "RUNPOD_MODELS_PATH",
+        "input": {
+          "name": "Models Path Override",
+          "type": "string",
+          "description": "Optional absolute path to the active ComfyUI models directory.",
+          "default": "",
+          "advanced": true
+        }
+      },
+      {
+        "key": "BUCKET_ENDPOINT_URL",
+        "input": {
+          "name": "S3 Endpoint URL",
+          "type": "string",
+          "description": "Optional S3-compatible endpoint for large output uploads.",
+          "default": "",
+          "advanced": true
+        }
+      },
+      {
+        "key": "BUCKET_ACCESS_KEY_ID",
+        "input": {
+          "name": "S3 Access Key ID",
+          "type": "string",
+          "description": "Access key for S3-compatible uploads.",
+          "default": "",
+          "advanced": true
+        }
+      },
+      {
+        "key": "BUCKET_SECRET_ACCESS_KEY",
+        "input": {
+          "name": "S3 Secret Access Key",
+          "type": "string",
+          "description": "Secret key for S3-compatible uploads.",
+          "default": "",
+          "advanced": true
+        }
+      },
+      {
+        "key": "SERVE_API_LOCALLY",
+        "input": {
+          "name": "Serve API Locally",
+          "type": "boolean",
+          "description": "Development only. Start the local API in the container.",
+          "default": false,
+          "advanced": true
+        }
+      },
+      {
+        "key": "COMFY_LOG_LEVEL",
+        "input": {
+          "name": "ComfyUI Log Level",
+          "type": "string",
+          "description": "ComfyUI log verbosity.",
+          "default": "INFO",
+          "advanced": true
+        }
+      },
+      {
+        "key": "WEBSOCKET_RECONNECT_ATTEMPTS",
+        "input": {
+          "name": "Websocket Reconnect Attempts",
+          "type": "number",
+          "description": "Reconnect attempts after websocket drops.",
+          "default": 5,
+          "advanced": true
+        }
+      },
+      {
+        "key": "WEBSOCKET_RECONNECT_DELAY_S",
+        "input": {
+          "name": "Websocket Reconnect Delay",
+          "type": "number",
+          "description": "Seconds to wait between reconnect attempts.",
+          "default": 3,
+          "advanced": true
+        }
+      },
+      {
+        "key": "WEBSOCKET_TRACE",
+        "input": {
+          "name": "Websocket Trace",
+          "type": "boolean",
+          "description": "Enable low-level websocket trace logs for debugging.",
+          "default": false,
+          "advanced": true
+        }
+      },
+      {
+        "key": "REFRESH_WORKER",
+        "input": {
+          "name": "Refresh Worker",
+          "type": "boolean",
+          "description": "Restart the worker after each job for a clean state.",
+          "default": false,
+          "advanced": true
+        }
+      }
+    ]
+  }
+}

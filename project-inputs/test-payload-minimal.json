@@ -1,0 +1,10 @@
+{
+  "input": {
+    "workflow": {
+      "replace_me": {
+        "inputs": {},
+        "class_type": "ReplaceWithApiWorkflowExport"
+      }
+    }
+  }
+}

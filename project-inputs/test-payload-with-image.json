@@ -1,0 +1,16 @@
+{
+  "input": {
+    "workflow": {
+      "replace_me": {
+        "inputs": {},
+        "class_type": "ReplaceWithApiWorkflowExport"
+      }
+    },
+    "images": [
+      {
+        "name": "input.png",
+        "image": "data:image/png;base64,REPLACE_ME"
+      }
+    ]
+  }
+}
