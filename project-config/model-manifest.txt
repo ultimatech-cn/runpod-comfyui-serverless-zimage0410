@@ -1,11 +1,13 @@
+# Workflow: Z-IMAGE TURBO-ENHANCE BY SHUBZ
 # Format:
 # relative_path|filename|url|action
 #
-# Actions:
-#   file
-#   unzip
-#   untar
-#
-# Replace these examples with real project models.
-checkpoints|example-model.safetensors|https://example.com/example-model.safetensors|file
-vae|example-vae.safetensors|https://example.com/example-vae.safetensors|file
+# Notes:
+# - `filename` is the on-volume filename used by the workflow.
+# - Some upstream sources use different original filenames; this manifest preserves
+#   the workflow-facing names expected by the API export.
+diffusion_models|z_image_turbo_fp8_e4m3fn.safetensors|https://huggingface.co/drbaph/Z-Image-Turbo-FP8/resolve/main/z_image_turbo_fp8_e4m3fn.safetensors|file
+clip|qwen_3_4b.safetensors|https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors|file
+vae|z-image-vae.safetensors|https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors|file
+model_patches|Z-Image-Turbo-Fun-Controlnet-Union.safetensors|https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union.safetensors|file
+unet|lotus-depth-g-v2-0-disparity.safetensors|https://huggingface.co/jingheya/lotus-depth-g-v2-0-disparity/resolve/main/unet/diffusion_pytorch_model.safetensors|file
