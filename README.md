@@ -1,15 +1,19 @@
 # RunPod ComfyUI Serverless Template
 
-A reusable template for deploying ComfyUI workflows on RunPod Serverless.
+This is the current main template for new RunPod ComfyUI Serverless projects.
 
-This repository is intentionally generic. It keeps the runtime core that usually works across projects and pushes project-specific changes into a small set of configuration files.
+The goal is not to be clever. The goal is to stay reusable, stable, and easy to copy into a new delivery project.
 
-## What Stays Stable
+## Start Here
 
-- `handler.py`: RunPod handler contract and ComfyUI execution loop
-- `src/start.sh`: startup orchestration and model path detection
-- `Dockerfile`: image build entrypoint for custom nodes and runtime tools
-- `scripts/download-models-to-volume.sh`: model download helper for temporary pods
+Read these in order:
+
+1. `QUICK_START.md`
+2. `SOP_RUNBOOK.md`
+3. `PITFALLS.md`
+4. `MANUAL_CHECKLIST.md`
+5. `scripts/README.md`
+6. `AGENTS.md`
 
 ## What You Change Per Project
 
@@ -20,10 +24,20 @@ This repository is intentionally generic. It keeps the runtime core that usually
 - `project-inputs/test-payload-with-image.json`
 - `.runpod/hub.json`
 
+## What Should Usually Stay Stable
+
+- `handler.py`
+- `src/start.sh`
+- `Dockerfile`
+- `scripts/download-models-to-volume.sh`
+- `scripts/install-custom-nodes.sh`
+
+Change these only when there is a real deployment issue to solve.
+
 ## Repository Layout
 
 ```text
-runpod-comfyui-serverless-template/
+runpod-comfyui-serverless-template0318/
   .runpod/
   project-config/
   project-inputs/
@@ -36,24 +50,32 @@ runpod-comfyui-serverless-template/
   handler.py
   README.md
   QUICK_START.md
+  SOP_SIMPLE.md
+  SOP_RUNBOOK.md
   PITFALLS.md
   MANUAL_CHECKLIST.md
   DELIVERY_CHECKLIST.md
+  AGENTS.md
 ```
 
 ## Recommended Operating Model
 
-- Install custom nodes into the image
-- Put models on a Network Volume
-- Keep workflow-specific logic in the workflow JSON before touching `handler.py`
-- Treat volume verification as a required manual step, not an optional check
+- Treat the delivery process as semi-automated, not fully automatic.
+- Use workflow extraction to produce drafts, then do manual verification before delivery.
+- Install custom nodes into the image.
+- Put models on a Network Volume.
+- Prefer your own Hugging Face mirror for LoRA files when third-party links are unstable or permission-gated.
+- Treat model verification as a required step, not an optional check.
+- Keep workflow-specific logic in the workflow JSON before touching `handler.py`.
 
-## First Read
+## Model Truth Policy
 
-- `QUICK_START.md`
-- `PITFALLS.md`
-- `MANUAL_CHECKLIST.md`
-- `scripts/README.md`
+- Do not assume workflow-exported model names are final truth.
+- Keep `workflow_ref` and `resolved source` as separate concepts.
+- For delivery, prioritize:
+  1. manually verified source
+  2. your own Hugging Face mirror
+  3. workflow-exported name only as a reference key
 
 ## Request Contract
 

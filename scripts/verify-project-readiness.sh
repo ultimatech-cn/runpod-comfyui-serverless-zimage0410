@@ -39,9 +39,11 @@ check_bom "$custom_nodes_path"
 check_bom "$manifest_path"
 
 if [[ -f "$custom_nodes_path" ]]; then
+  has_custom_node_entries=0
   while IFS= read -r raw_line || [[ -n "$raw_line" ]]; do
     line="${raw_line%$'\r'}"
     [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+    has_custom_node_entries=1
     if [[ "$line" != registry:* && "$line" != git:* ]]; then
       fail "invalid custom node line: $line"
       continue
@@ -54,6 +56,10 @@ if [[ -f "$custom_nodes_path" ]]; then
       fi
     fi
   done < "$custom_nodes_path"
+
+  if [[ "${has_custom_node_entries:-0}" -eq 1 ]]; then
+    warn "run 'bash scripts/preflight-custom-node-deps.sh $custom_nodes_path' before changing Docker-related files or promoting an image tag"
+  fi
 fi
 
 manifest_models=()
@@ -75,6 +81,10 @@ if [[ -f "$manifest_path" ]]; then
 fi
 
 if [[ -f "$workflow_path" ]]; then
+  if grep -q 'ReplaceWithApiWorkflowExport' "$workflow_path"; then
+    fail "workflow is still using the template placeholder export"
+  fi
+
   if grep -q '\\' "$workflow_path"; then
     warn "workflow contains backslashes; review Windows-style paths"
   fi
@@ -89,12 +99,18 @@ if [[ -f "$workflow_path" ]]; then
       fi
     done
     if [[ $found -eq 0 ]]; then
-      warn "workflow references model not found in manifest: $ref"
+      fail "workflow references model not found in manifest: $ref"
     fi
   done
 
   if ! grep -q 'SaveImage\|VHS_VideoCombine\|SaveAnimatedWEBP\|SaveWEBM\|SaveVideo' "$workflow_path"; then
-    warn "workflow does not appear to contain a known output node"
+    fail "workflow does not appear to contain a known output node"
+  fi
+fi
+
+if [[ -f "$manifest_path" ]]; then
+  if grep -q 'example\.com/example-' "$manifest_path"; then
+    fail "model manifest still contains template example.com entries"
   fi
 fi
 

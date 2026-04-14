@@ -1,0 +1,4 @@
+interface:
+  display_name: "ComfyUI Dependency Inventory"
+  short_description: "Build RunPod dependency drafts from ComfyUI workflows"
+  default_prompt: "Generate RunPod dependency inventory files for this ComfyUI workflow."

@@ -1,0 +1,173 @@
+2026-04-11T05:57:50.018400746Z ==========
+2026-04-11T05:57:50.018412789Z == CUDA ==
+2026-04-11T05:57:50.018438116Z ==========
+2026-04-11T05:57:50.021118764Z CUDA Version 12.8.1
+2026-04-11T05:57:50.022110520Z Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+2026-04-11T05:57:50.022750198Z This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+2026-04-11T05:57:50.022751891Z By pulling and using the container, you accept the terms and conditions of this license:
+2026-04-11T05:57:50.022753514Z https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+2026-04-11T05:57:50.022756610Z A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+2026-04-11T05:57:50.037666749Z worker-comfyui - ComfyUI-Manager network_mode set to 'offline' in /comfyui/user/default/ComfyUI-Manager/config.ini
+2026-04-11T05:57:50.037844652Z worker-comfyui: Checking Network Volume mount...
+2026-04-11T05:57:50.038430078Z worker-comfyui: /runpod-volume exists
+2026-04-11T05:57:50.038435708Z worker-comfyui: Detected models directory: /runpod-volume/models
+2026-04-11T05:57:50.043357641Z total 5863
+2026-04-11T05:57:50.043365105Z drwxrwxrwx 3 root root 3001494 Apr 11 05:27 .
+2026-04-11T05:57:50.043367600Z drwxr-xr-x 1 root root     114 Apr 11 05:57 ..
+2026-04-11T05:57:50.043369393Z drwxrwxrwx 7 root root 3001494 Apr 11 05:32 models
+2026-04-11T05:57:50.043657693Z worker-comfyui: Setting up model directory symlinks from /runpod-volume/models
+2026-04-11T05:57:50.051637890Z worker-comfyui: Created symlink /comfyui/models/clip -> /runpod-volume/models/clip
+2026-04-11T05:57:50.061732566Z worker-comfyui: Created symlink /comfyui/models/unet -> /runpod-volume/models/unet
+2026-04-11T05:57:50.068897578Z worker-comfyui: Created symlink /comfyui/models/vae -> /runpod-volume/models/vae
+2026-04-11T05:57:50.088351452Z worker-comfyui: Created symlink /comfyui/models/diffusion_models -> /runpod-volume/models/diffusion_models
+2026-04-11T05:57:50.091775441Z worker-comfyui: Model directory symlinks setup complete
+2026-04-11T05:57:50.092157416Z worker-comfyui: Found extra_model_paths.yaml, backing it up (using symlinks instead)
+2026-04-11T05:57:50.093815770Z worker-comfyui: Starting ComfyUI
+2026-04-11T05:57:50.093836730Z worker-comfyui: Starting ComfyUI in background...
+2026-04-11T05:57:50.093950212Z worker-comfyui: ComfyUI started with PID 105
+2026-04-11T05:57:50.093952055Z worker-comfyui: Waiting for ComfyUI to initialize...
+2026-04-11T05:57:50.098912000Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.098930915Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.479012905Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.479029837Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.799143687Z [START] Security scan
+2026-04-11T05:57:50.799157062Z [DONE] Security scan
+2026-04-11T05:57:50.799159517Z ## ComfyUI-Manager: installing dependencies done.
+2026-04-11T05:57:50.799162122Z ** ComfyUI startup time: 2026-04-11 05:57:50.799
+2026-04-11T05:57:50.799166410Z ** Platform: Linux
+2026-04-11T05:57:50.799194091Z ** Python version: 3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+2026-04-11T05:57:50.799214971Z ** Python executable: /opt/venv/bin/python
+2026-04-11T05:57:50.799242342Z ** ComfyUI Path: /comfyui
+2026-04-11T05:57:50.799279832Z ** ComfyUI Base Folder Path: /comfyui
+2026-04-11T05:57:50.799301402Z ** User directory: /comfyui/user
+2026-04-11T05:57:50.799333863Z ** ComfyUI-Manager config path: /comfyui/user/__manager/config.ini
+2026-04-11T05:57:50.799368849Z ** Log path: /comfyui/user/comfyui.log
+2026-04-11T05:57:50.804375911Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.804385709Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.994630376Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:50.994642558Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:51.184918784Z Prestartup times for custom nodes:
+2026-04-11T05:57:51.184991420Z    0.0 seconds: /comfyui/custom_nodes/rgthree-comfy
+2026-04-11T05:57:51.185045731Z    1.0 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2026-04-11T05:57:52.813355557Z Checkpoint files will always be loaded safely.
+2026-04-11T05:57:53.029432016Z Total VRAM 24081 MB, total RAM 127909 MB
+2026-04-11T05:57:53.029466821Z pytorch version: 2.9.1+cu128
+2026-04-11T05:57:53.029722860Z Set vram state to: NORMAL_VRAM
+2026-04-11T05:57:53.029885996Z Device: cuda:0 NVIDIA GeForce RTX 4090 : cudaMallocAsync
+2026-04-11T05:57:53.029946579Z Using async weight offloading with 2 streams
+2026-04-11T05:57:53.030028232Z Enabled pinned memory 121514.0
+2026-04-11T05:57:53.046766633Z working around nvidia conv3d memory bug.
+2026-04-11T05:57:55.094979096Z worker-comfyui: Starting RunPod Handler
+2026-04-11T05:57:55.100191924Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:55.100206391Z Invalid -W option ignored: invalid module name: 'numba'
+2026-04-11T05:57:55.258482718Z Using pytorch attention
+2026-04-11T05:57:56.572017968Z worker-comfyui: WARNING: BLIP cache directory not found (checked detected models root and image path)
+2026-04-11T05:57:56.572098308Z worker-comfyui - Starting handler...
+2026-04-11T05:57:56.572102606Z --- Starting Serverless Worker |  Version 1.8.1 ---
+2026-04-11T05:57:56.632769504Z Python version: 3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+2026-04-11T05:57:56.632786186Z ComfyUI version: 0.6.0
+2026-04-11T05:57:56.634552702Z ComfyUI frontend version: 1.34.9
+2026-04-11T05:57:56.634928546Z [Prompt Server] web root: /opt/venv/lib/python3.12/site-packages/comfyui_frontend_package/static
+2026-04-11T05:57:56.967499533Z Total VRAM 24081 MB, total RAM 127909 MB
+2026-04-11T05:57:56.967511927Z pytorch version: 2.9.1+cu128
+2026-04-11T05:57:56.967642150Z Set vram state to: NORMAL_VRAM
+2026-04-11T05:57:56.967680472Z Device: cuda:0 NVIDIA GeForce RTX 4090 : cudaMallocAsync
+2026-04-11T05:57:56.967727009Z Using async weight offloading with 2 streams
+2026-04-11T05:57:56.967806628Z Enabled pinned memory 121514.0
+2026-04-11T05:57:57.059698374Z {"requestId": null, "message": "Jobs in queue: 1", "level": "INFO"}
+2026-04-11T05:57:57.059711549Z {"requestId": null, "message": "Jobs in progress: 1", "level": "INFO"}
+2026-04-11T05:57:57.059854487Z {"requestId": "efc098cc-e9ea-4a43-8514-cf2e66226ab5-e2", "message": "Started.", "level": "INFO"}
+2026-04-11T05:57:57.059875215Z worker-comfyui - Checking API server at http://127.0.0.1:8188/...
+2026-04-11T05:57:57.366648975Z ----------------------------------------------------------------------
+2026-04-11T05:57:57.366651219Z [ComfyUI-Manager] NOTICE: Legacy config.ini detected
+2026-04-11T05:57:57.366652802Z   - Old: /comfyui/user/default/ComfyUI-Manager/config.ini
+2026-04-11T05:57:57.366655016Z   - New: /comfyui/user/__manager/config.ini
+2026-04-11T05:57:57.366670956Z   - Migrating config.ini only (other files are NOT migrated).
+2026-04-11T05:57:57.366676586Z   - Security level below 'normal' will be raised.
+2026-04-11T05:57:57.366683720Z ----------------------------------------------------------------------
+2026-04-11T05:57:57.366830154Z   - Security level: 'normal' (no change needed)
+2026-04-11T05:57:57.374161427Z ----------------------------------------------------------------------
+2026-04-11T05:57:57.374175323Z [ComfyUI-Manager] NOTICE: Legacy settings migrated
+2026-04-11T05:57:57.374189770Z   - Old location: /comfyui/user/default/ComfyUI-Manager
+2026-04-11T05:57:57.374206140Z   - Backed up to: /comfyui/user/__manager/.legacy-manager-backup
+2026-04-11T05:57:57.374224425Z   - Please verify and remove the backup when no longer needed.
+2026-04-11T05:57:57.374233401Z ----------------------------------------------------------------------
+2026-04-11T05:57:57.374374095Z ### Loading: ComfyUI-Manager (V3.39)
+2026-04-11T05:57:57.374533653Z [ComfyUI-Manager] network_mode: offline
+2026-04-11T05:57:57.374600509Z [ComfyUI-Manager] ComfyUI per-queue preview override detected (PR #11261). Manager's preview method feature is disabled. Use ComfyUI's --preview-method CLI option or 'Settings > Execution > Live preview method'.
+2026-04-11T05:57:57.399625822Z ### ComfyUI Revision: 4431 [e4c61d75] *DETACHED | Released on '2025-12-23'
+2026-04-11T05:57:57.401590830Z [ComfyUI-Manager] All startup tasks have been completed.
+2026-04-11T05:57:57.431172752Z [92m[rgthree-comfy] Loaded 48 fantastic nodes. 🎉[0m
+2026-04-11T05:57:57.431201106Z [33m[rgthree-comfy] ComfyUI's new Node 2.0 rendering may be incompatible with some rgthree-comfy nodes and features, breaking some rendering as well as losing the ability to access a node's properties (a vital part of many nodes). It also appears to run MUCH more slowly spiking CPU usage and causing jankiness and unresponsiveness, especially with large workflows. Personally I am not planning to use the new Nodes 2.0 and, unfortunately, am not able to invest the time to investigate and overhaul rgthree-comfy where needed. If you have issues when Nodes 2.0 is enabled, I'd urge you to switch it off as well and join me in hoping ComfyUI is not planning to deprecate the existing, stable canvas rendering all together.
+2026-04-11T05:57:57.431203480Z [0m
+2026-04-11T05:57:57.704354824Z generated new fontManager
+2026-04-11T05:57:57.841688820Z /comfyui/custom_nodes/ComfyUI_Comfyroll_CustomNodes/nodes/nodes_list.py:383: SyntaxWarning: invalid escape sequence '\W'
+2026-04-11T05:57:57.841701564Z   "optional": {"folder_path": ("STRING", {"default": "C:\Windows\Fonts", "multiline": False}),
+2026-04-11T05:57:57.841704460Z /comfyui/custom_nodes/ComfyUI_Comfyroll_CustomNodes/nodes/nodes_list.py:393: SyntaxWarning: invalid escape sequence '\W'
+2026-04-11T05:57:57.841706984Z   def make_list(self, source_folder, start_index, max_rows, folder_path="C:\Windows\Fonts"):
+2026-04-11T05:57:57.854247849Z /comfyui/custom_nodes/ComfyUI_Comfyroll_CustomNodes/nodes/nodes_xygrid.py:256: SyntaxWarning: invalid escape sequence '\R'
+2026-04-11T05:57:57.854254802Z   resolved_font_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "fonts\Roboto-Regular.ttf")
+2026-04-11T05:57:57.891876764Z ------------------------------------------
+2026-04-11T05:57:57.891884378Z [34mComfyroll Studio v1.76 : [92m 175 Nodes Loaded[0m
+2026-04-11T05:57:57.891894317Z ------------------------------------------
+2026-04-11T05:57:57.891903313Z ** For changes, please see patch notes at https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes/blob/main/Patch_Notes.md
+2026-04-11T05:57:57.891916248Z ** For help, please see the wiki at https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes/wiki
+2026-04-11T05:57:57.891937327Z ------------------------------------------
+2026-04-11T05:57:57.892714692Z Import times for custom nodes:
+2026-04-11T05:57:57.892749437Z    0.0 seconds: /comfyui/custom_nodes/websocket_image_save.py
+2026-04-11T05:57:57.892769956Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Universal-Latent
+2026-04-11T05:57:57.892787058Z    0.0 seconds: /comfyui/custom_nodes/rgthree-comfy
+2026-04-11T05:57:57.892801465Z    0.0 seconds: /comfyui/custom_nodes/ComfyUI-Manager
+2026-04-11T05:57:57.892816693Z    0.1 seconds: /comfyui/custom_nodes/ComfyUI_Comfyroll_CustomNodes
+2026-04-11T05:57:57.892829828Z    0.4 seconds: /comfyui/custom_nodes/ComfyUI-Detail-Daemon
+2026-04-11T05:57:58.087726332Z Context impl SQLiteImpl.
+2026-04-11T05:57:58.087742492Z Will assume non-transactional DDL.
+2026-04-11T05:57:58.088240624Z No target revision found.
+2026-04-11T05:57:58.106321849Z Starting server
+2026-04-11T05:57:58.106468143Z To see the GUI go to: http://127.0.0.1:8188
+2026-04-11T05:57:58.126504788Z worker-comfyui - API is reachable
+2026-04-11T05:57:58.126527010Z worker-comfyui - Connecting to websocket: ws://127.0.0.1:8188/ws?clientId=57f88f5d-3473-4f22-91d0-2e00f2ec3430
+2026-04-11T05:57:58.127520700Z worker-comfyui - Websocket connected
+2026-04-11T05:57:58.128169294Z got prompt
+2026-04-11T05:57:58.137744587Z worker-comfyui - Queued workflow with ID: 14d91ee5-925b-4739-b000-46c2066d8171
+2026-04-11T05:57:58.137750819Z worker-comfyui - Waiting for workflow execution (14d91ee5-925b-4739-b000-46c2066d8171)...
+2026-04-11T05:57:58.137820500Z worker-comfyui - Status update: 0 items remaining in queue
+2026-04-11T05:57:58.137851638Z worker-comfyui - Status update: 1 items remaining in queue
+2026-04-11T05:57:58.137875673Z worker-comfyui - Status update: 1 items remaining in queue
+2026-04-11T05:57:58.413563024Z Using pytorch attention in VAE
+2026-04-11T05:57:58.414166523Z Using pytorch attention in VAE
+2026-04-11T05:58:00.392138608Z VAE load device: cuda:0, offload device: cpu, dtype: torch.bfloat16
+2026-04-11T05:58:00.426545903Z !!! Exception during processing !!! Error while deserializing header: incomplete metadata, file not fully covered
+2026-04-11T05:58:00.427520176Z Traceback (most recent call last):
+2026-04-11T05:58:00.427530876Z   File "/comfyui/execution.py", line 516, in execute
+2026-04-11T05:58:00.427533852Z     output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+2026-04-11T05:58:00.427536517Z                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-11T05:58:00.427538571Z   File "/comfyui/execution.py", line 330, in get_output_data
+2026-04-11T05:58:00.427540755Z     return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+2026-04-11T05:58:00.427542839Z                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-11T05:58:00.427544833Z   File "/comfyui/execution.py", line 304, in _async_map_node_over_list
+2026-04-11T05:58:00.427547087Z     await process_inputs(input_dict, i)
+2026-04-11T05:58:00.427549291Z   File "/comfyui/execution.py", line 292, in process_inputs
+2026-04-11T05:58:00.427551235Z     result = f(**inputs)
+2026-04-11T05:58:00.427553439Z              ^^^^^^^^^^^
+2026-04-11T05:58:00.427555382Z   File "/comfyui/nodes.py", line 938, in load_unet
+2026-04-11T05:58:00.427557366Z     model = comfy.sd.load_diffusion_model(unet_path, model_options=model_options)
+2026-04-11T05:58:00.427559851Z             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-11T05:58:00.427562025Z   File "/comfyui/comfy/sd.py", line 1540, in load_diffusion_model
+2026-04-11T05:58:00.427563988Z     sd, metadata = comfy.utils.load_torch_file(unet_path, return_metadata=True)
+2026-04-11T05:58:00.427565982Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-11T05:58:00.427567996Z   File "/comfyui/comfy/utils.py", line 80, in load_torch_file
+2026-04-11T05:58:00.427569990Z     raise e
+2026-04-11T05:58:00.427572084Z   File "/comfyui/comfy/utils.py", line 64, in load_torch_file
+2026-04-11T05:58:00.427574067Z     with safetensors.safe_open(ckpt, framework="pt", device=device.type) as f:
+2026-04-11T05:58:00.427576121Z          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-11T05:58:00.427578365Z safetensors_rust.SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered
+2026-04-11T05:58:00.428087729Z Prompt executed in 2.29 seconds
+2026-04-11T05:58:00.428455076Z worker-comfyui - Execution error received: Node Type: UNETLoader, Node ID: 28, Message: Error while deserializing header: incomplete metadata, file not fully covered
+2026-04-11T05:58:00.428459895Z worker-comfyui - Fetching history for prompt 14d91ee5-925b-4739-b000-46c2066d8171...
+2026-04-11T05:58:00.604990492Z worker-comfyui - No outputs found in history for prompt 14d91ee5-925b-4739-b000-46c2066d8171.
+2026-04-11T05:58:00.605012904Z worker-comfyui - Processing 0 output nodes...
+2026-04-11T05:58:00.605015729Z worker-comfyui - Closing websocket connection.
+2026-04-11T05:58:00.605167212Z worker-comfyui - Job completed with errors/warnings: ['Workflow execution error: Node Type: UNETLoader, Node ID: 28, Message: Error while deserializing header: incomplete metadata, file not fully covered\n']
+2026-04-11T05:58:00.605183974Z worker-comfyui - Job failed with no output media files.
+2026-04-11T05:58:00.733156457Z {"requestId": "efc098cc-e9ea-4a43-8514-cf2e66226ab5-e2", "message": "Finished.", "level": "INFO"}

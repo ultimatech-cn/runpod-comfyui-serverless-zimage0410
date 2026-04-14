@@ -55,16 +55,59 @@ if bucket_endpoint:
             os.environ['AWS_REGION'] = aws_region
             print(f"worker-comfyui: Detected AWS S3 region from endpoint: {aws_region}")
 
+def detect_models_root():
+    """Return the effective ComfyUI models root, matching start.sh rules."""
+    override_path = os.environ.get("RUNPOD_MODELS_PATH") or os.environ.get("MODELS_VOLUME_PATH")
+    if override_path:
+        if os.path.isdir(override_path):
+            return override_path
+        print(f"worker-comfyui: WARNING: override models path does not exist: {override_path}")
+
+    candidates = [
+        "/runpod-volume/storage/models",
+        "/runpod-volume/models",
+        "/runpod-volume/storage/ComfyUI/models",
+        "/runpod-volume/ComfyUI/models",
+        "/workspace/runpod-slim/ComfyUI/models",
+        "/workspace/ComfyUI/models",
+        "/workspace/models",
+    ]
+    for candidate in candidates:
+        if os.path.isdir(candidate):
+            return candidate
+
+    for search_root in ("/runpod-volume", "/workspace"):
+        if not os.path.isdir(search_root):
+            continue
+
+        max_depth = search_root.rstrip(os.sep).count(os.sep) + 5
+        for current_root, dirnames, _ in os.walk(search_root):
+            current_depth = current_root.rstrip(os.sep).count(os.sep)
+            if current_depth > max_depth:
+                dirnames[:] = []
+                continue
+
+            if os.path.basename(current_root).lower() != "models":
+                continue
+
+            child_dirs = {name.lower() for name in dirnames}
+            if {"checkpoints", "loras", "unet"} & child_dirs:
+                return current_root
+
+    return None
+
+
 # Set Hugging Face cache directories for BLIP and other transformers models
-# Priority: Network Volume > Image default path
+# Priority: detected models root > image default path
 # transformers library stores models in cache_dir/models--Salesforce--blip-vqa-base/ structure
-blip_cache_network = '/runpod-volume/models/blip'
+models_root = detect_models_root()
+blip_cache_network = os.path.join(models_root, "blip") if models_root else None
 blip_cache_image = '/comfyui/models/blip'
 
-# Prefer Network Volume, fallback to image default path
-if os.path.isdir(blip_cache_network):
+# Prefer detected models root, fallback to image default path
+if blip_cache_network and os.path.isdir(blip_cache_network):
     blip_cache_dir = blip_cache_network
-    cache_source = "Network Volume"
+    cache_source = "detected models root"
 elif os.path.isdir(blip_cache_image):
     blip_cache_dir = blip_cache_image
     cache_source = "image default path"
@@ -88,10 +131,10 @@ if blip_cache_dir:
             print(f"worker-comfyui:   - {model_dir}")
     else:
         print(f"worker-comfyui: WARNING: No BLIP model directories found in {blip_cache_dir}")
-        if cache_source == "Network Volume":
+        if cache_source == "detected models root":
             print(f"worker-comfyui: Please run download-models-to-volume.sh to download BLIP models")
 else:
-    print(f"worker-comfyui: WARNING: BLIP cache directory not found (checked Network Volume and image path)")
+    print(f"worker-comfyui: WARNING: BLIP cache directory not found (checked detected models root and image path)")
 
 # Configure logging to reduce numba verbose output
 # Set numba logger to CRITICAL level to suppress all messages including type inference errors

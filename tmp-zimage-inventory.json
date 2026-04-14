@@ -1,0 +1,130 @@
+{
+  "source_format": "api_json",
+  "models": [
+    {
+      "filename": "qwen_3_4b.safetensors",
+      "model_type": "clip",
+      "source_type": "file",
+      "source_nodes": [
+        "CLIPLoader"
+      ],
+      "field_names": [
+        "clip_name"
+      ],
+      "required": true,
+      "explicit_url": "",
+      "candidate_urls": [],
+      "verification_required": true,
+      "preload_recommended": false,
+      "hub_repo_id": "",
+      "hub_repo_url": "",
+      "notes": []
+    },
+    {
+      "filename": "z_image_turbo_fp8_e4m3fn.safetensors",
+      "model_type": "unet",
+      "source_type": "file",
+      "source_nodes": [
+        "UNETLoader"
+      ],
+      "field_names": [
+        "unet_name"
+      ],
+      "required": true,
+      "explicit_url": "",
+      "candidate_urls": [],
+      "verification_required": true,
+      "preload_recommended": false,
+      "hub_repo_id": "",
+      "hub_repo_url": "",
+      "notes": []
+    },
+    {
+      "filename": "z-image-vae.safetensors",
+      "model_type": "vae",
+      "source_type": "file",
+      "source_nodes": [
+        "VAELoader"
+      ],
+      "field_names": [
+        "vae_name"
+      ],
+      "required": true,
+      "explicit_url": "",
+      "candidate_urls": [],
+      "verification_required": true,
+      "preload_recommended": false,
+      "hub_repo_id": "",
+      "hub_repo_url": "",
+      "notes": []
+    }
+  ],
+  "custom_nodes": [
+    {
+      "node_name": "CR Prompt List",
+      "title": "📜 CR Prompt List",
+      "required": true,
+      "source_node_ids": [
+        "45"
+      ],
+      "repo_url": "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes",
+      "install_spec": "git:https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes",
+      "version_hint": "",
+      "extra_dependencies": "",
+      "confidence": "medium",
+      "verification_required": true,
+      "resolution_source": "pattern"
+    },
+    {
+      "node_name": "DetailDaemonSamplerNode",
+      "title": "Detail Daemon Sampler",
+      "required": true,
+      "source_node_ids": [
+        "35"
+      ],
+      "repo_url": "",
+      "install_spec": "",
+      "version_hint": "",
+      "extra_dependencies": "",
+      "confidence": "none",
+      "verification_required": true,
+      "resolution_source": "unresolved"
+    },
+    {
+      "node_name": "Power Lora Loader (rgthree)",
+      "title": "Power Lora Loader (rgthree)",
+      "required": true,
+      "source_node_ids": [
+        "67"
+      ],
+      "repo_url": "https://github.com/rgthree/rgthree-comfy",
+      "install_spec": "git:https://github.com/rgthree/rgthree-comfy",
+      "version_hint": "",
+      "extra_dependencies": "",
+      "confidence": "high",
+      "verification_required": true,
+      "resolution_source": "pattern"
+    },
+    {
+      "node_name": "UniversalLatent",
+      "title": "🌌✨ Universal Latent (Enhanced) 🎨⚡",
+      "required": true,
+      "source_node_ids": [
+        "60"
+      ],
+      "repo_url": "",
+      "install_spec": "",
+      "version_hint": "",
+      "extra_dependencies": "",
+      "confidence": "none",
+      "verification_required": true,
+      "resolution_source": "unresolved"
+    }
+  ],
+  "python_dependencies": [],
+  "system_dependencies": [],
+  "environment_variables": [],
+  "external_services": [],
+  "unresolved_model_refs": [],
+  "reference_links": []
+}

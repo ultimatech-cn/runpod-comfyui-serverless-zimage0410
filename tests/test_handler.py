@@ -1,6 +1,7 @@
 import sys
 import types
 import unittest
+from unittest import mock
 
 
 runpod_module = types.ModuleType("runpod")
@@ -76,6 +77,22 @@ class TestNormalizeWorkflowPaths(unittest.TestCase):
             "WAN/demo.safetensors",
         )
         self.assertEqual(normalized["1"]["inputs"]["note"], "leave me alone")
+
+
+class TestDetectModelsRoot(unittest.TestCase):
+    def test_override_path_is_used_when_present(self):
+        with mock.patch.dict(handler.os.environ, {"RUNPOD_MODELS_PATH": "/custom/models"}, clear=False):
+            with mock.patch.object(handler.os.path, "isdir", side_effect=lambda path: path == "/custom/models"):
+                self.assertEqual(handler.detect_models_root(), "/custom/models")
+
+    def test_workspace_models_path_is_detected(self):
+        def fake_isdir(path):
+            return path in {"/workspace/models"}
+
+        with mock.patch.dict(handler.os.environ, {}, clear=True):
+            with mock.patch.object(handler.os.path, "isdir", side_effect=fake_isdir):
+                with mock.patch.object(handler.os, "walk", return_value=[]):
+                    self.assertEqual(handler.detect_models_root(), "/workspace/models")
 
 
 if __name__ == "__main__":

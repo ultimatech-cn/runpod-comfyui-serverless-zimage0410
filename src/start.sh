@@ -108,11 +108,11 @@ comfy-manager-set-mode offline || echo "worker-comfyui - Could not set ComfyUI-M
 # Using symlinks ensures compatibility with all ComfyUI nodes and custom nodes
 #
 # IMPORTANT: Network Volume mount points differ between environments:
-# - Temporary Pod: Network Volume mounts at /workspace
-# - Endpoint: Network Volume mounts at /runpod-volume
-# This script runs in Endpoint, so it checks /runpod-volume
-# Models downloaded in Temporary Pod to /workspace/models/ will be accessible
-# at /runpod-volume/models/ in Endpoint (same Volume, different mount point)
+# - Temporary Pod: Network Volume may mount at /workspace
+# - Endpoint: Network Volume commonly mounts at /runpod-volume
+# We keep using the detected models root even if /runpod-volume does not exist,
+# because some customer environments expose the effective models directory only
+# under /workspace or through an explicit override path.
 
 # Debug: Check if Network Volume is mounted
 echo "worker-comfyui: Checking Network Volume mount..."
@@ -127,7 +127,6 @@ if [ -d "/runpod-volume" ]; then
     
     ls -la /runpod-volume/ | head -5 || echo "worker-comfyui: Cannot list /runpod-volume"
 else
-    VOLUME_MODELS_PATH=""
     echo "worker-comfyui: WARNING: /runpod-volume does not exist"
 fi
 
@@ -254,7 +253,7 @@ if [ -n "$VOLUME_MODELS_PATH" ]; then
     echo "worker-comfyui: Model directory symlinks setup complete"
     
     # Verify antelopev2 subdirectory for PuLID_ComfyUI
-    if [ -d "/runpod-volume/models/insightface/models/antelopev2" ]; then
+    if [ -d "${VOLUME_MODELS_PATH}/insightface/models/antelopev2" ]; then
         echo "worker-comfyui: Found antelopev2 model in Network Volume"
     elif [ -L "/comfyui/models/insightface" ]; then
         echo "worker-comfyui: WARNING: antelopev2 model not found in Network Volume"

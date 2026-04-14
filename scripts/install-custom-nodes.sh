@@ -9,6 +9,16 @@ set -euo pipefail
 manifest_path="${1:-/project-config/custom-nodes.txt}"
 comfyui_path="${COMFYUI_PATH:-/comfyui}"
 custom_nodes_dir="${comfyui_path}/custom_nodes"
+shared_dep_report="${SHARED_DEP_REPORT:-/tmp/custom-node-shared-deps.txt}"
+
+shared_runtime_deps=(
+  "transformers"
+  "huggingface_hub"
+  "accelerate"
+  "diffusers"
+  "opencv-python"
+  "bitsandbytes"
+)
 
 if [[ ! -f "${manifest_path}" ]]; then
   echo "install-custom-nodes: manifest not found: ${manifest_path}"
@@ -19,6 +29,7 @@ echo "install-custom-nodes: using manifest ${manifest_path}"
 
 mkdir -p "${custom_nodes_dir}"
 cd "${custom_nodes_dir}"
+rm -f "${shared_dep_report}"
 
 trim() {
   local value="$1"
@@ -61,6 +72,8 @@ install_git_repo() {
     fi
   fi
 
+  inspect_shared_runtime_dependencies "${repo_name}" "${repo_url}"
+
   if [[ -f "${repo_name}/requirements.txt" ]]; then
     python3 -m pip install --no-cache-dir -r "${repo_name}/requirements.txt" || true
   fi
@@ -71,6 +84,43 @@ install_git_repo() {
 
   if [[ -f "${repo_name}/install.sh" ]]; then
     (cd "${repo_name}" && bash install.sh) || true
+  fi
+}
+
+inspect_shared_runtime_dependencies() {
+  local repo_name="$1"
+  local repo_url="$2"
+  local dep
+  local matched=()
+  local search_files=()
+
+  shopt -s nullglob
+  for file in "${repo_name}"/requirements*.txt "${repo_name}"/install.py "${repo_name}"/README*; do
+    if [[ -f "${file}" ]]; then
+      search_files+=("${file}")
+    fi
+  done
+  shopt -u nullglob
+
+  if [[ ${#search_files[@]} -eq 0 ]]; then
+    return 0
+  fi
+
+  for dep in "${shared_runtime_deps[@]}"; do
+    if grep -qiF "${dep}" "${search_files[@]}"; then
+      matched+=("${dep}")
+    fi
+  done
+
+  if [[ ${#matched[@]} -gt 0 ]]; then
+    {
+      echo "repo=${repo_url}"
+      echo "node_dir=${repo_name}"
+      echo "shared_runtime_dependencies=$(IFS=,; echo "${matched[*]}")"
+      echo "checked_files=$(IFS=,; echo "${search_files[*]}")"
+      echo "---"
+    } >> "${shared_dep_report}"
+    echo "install-custom-nodes: shared runtime dependency warning for ${repo_url} -> ${matched[*]}"
   fi
 }
 
@@ -106,5 +156,10 @@ while IFS= read -r raw_line || [[ -n "${raw_line}" ]]; do
   echo "install-custom-nodes: unsupported line format: ${line}" >&2
   exit 1
 done < "${manifest_path}"
+
+if [[ -f "${shared_dep_report}" ]]; then
+  echo "install-custom-nodes: shared runtime dependency report written to ${shared_dep_report}"
+  echo "install-custom-nodes: review before promoting a production image tag"
+fi
 
 echo "install-custom-nodes: done"

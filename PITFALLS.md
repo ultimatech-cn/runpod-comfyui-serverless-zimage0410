@@ -70,3 +70,25 @@ Always verify:
 - the model count
 - key model filenames
 - endpoint startup logs
+
+## Shared Runtime Dependency Drift From Custom Nodes
+
+New custom node repos may pull or upgrade shared packages such as:
+
+- `transformers`
+- `huggingface_hub`
+- `accelerate`
+- `diffusers`
+- `opencv-python`
+- `bitsandbytes`
+
+This is higher risk than a normal node add because it can affect unrelated workflows and force a new image rebuild.
+
+Do not promote these changes directly on the production image tag.
+
+Prefer this sequence:
+
+1. detect the shared dependency change
+2. build a separate test image tag
+3. regression-test at least two workflows
+4. only then promote the final tag

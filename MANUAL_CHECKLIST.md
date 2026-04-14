@@ -14,6 +14,16 @@ Do not skip these checks.
 
 - Confirm every script copied by `Dockerfile` exists in the repository and is not excluded by `.dockerignore`.
 - Confirm custom node repositories still exist and the selected branch is valid.
+- Run `scripts/preflight-custom-node-deps.sh` before editing Docker-related files or promoting a new image tag.
+- For every new custom node repo, inspect `requirements.txt`, `install.py`, and README install notes.
+- Identify shared runtime dependencies before build, especially:
+  - `transformers`
+  - `huggingface_hub`
+  - `accelerate`
+  - `diffusers`
+  - `opencv-python`
+  - `bitsandbytes`
+- Confirm whether a shared dependency upgrade is required before using a production tag.
 - Confirm the image can build before any volume or endpoint debugging starts.
 
 ## Volume Audit
@@ -30,3 +40,4 @@ Do not skip these checks.
 - Confirm missing node errors are not being mistaken for missing model errors.
 - Confirm history outputs contain real media artifacts.
 - Confirm the response shape matches the client contract.
+- If shared runtime dependencies were upgraded, confirm at least two representative workflows still run correctly.
