@@ -1,0 +1,190 @@
+{
+  "input": {
+    "workflow": {
+      "6": {
+        "inputs": {
+          "text": [
+            "45",
+            0
+          ],
+          "clip": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode"
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "39",
+            0
+          ],
+          "vae": [
+            "17",
+            0
+          ]
+        },
+        "class_type": "VAEDecode"
+      },
+      "9": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "SaveImage"
+      },
+      "11": {
+        "inputs": {
+          "shift": 3,
+          "model": [
+            "28",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow"
+      },
+      "17": {
+        "inputs": {
+          "vae_name": "z-image-vae.safetensors"
+        },
+        "class_type": "VAELoader"
+      },
+      "18": {
+        "inputs": {
+          "clip_name": "qwen_3_4b.safetensors",
+          "type": "qwen_image",
+          "device": "default"
+        },
+        "class_type": "CLIPLoader"
+      },
+      "28": {
+        "inputs": {
+          "unet_name": "z_image_turbo_fp8_e4m3fn.safetensors",
+          "weight_dtype": "default"
+        },
+        "class_type": "UNETLoader"
+      },
+      "35": {
+        "inputs": {
+          "detail_amount": 0.25000000000000006,
+          "start": 0,
+          "end": 1,
+          "bias": 0.5,
+          "exponent": 1,
+          "start_offset": 0,
+          "end_offset": 0,
+          "fade": 0,
+          "smooth": true,
+          "cfg_scale_override": 0,
+          "sampler": [
+            "36",
+            0
+          ]
+        },
+        "class_type": "DetailDaemonSamplerNode"
+      },
+      "36": {
+        "inputs": {
+          "sampler_name": "dpmpp_sde"
+        },
+        "class_type": "KSamplerSelect"
+      },
+      "39": {
+        "inputs": {
+          "noise": [
+            "41",
+            0
+          ],
+          "guider": [
+            "42",
+            0
+          ],
+          "sampler": [
+            "35",
+            0
+          ],
+          "sigmas": [
+            "43",
+            0
+          ],
+          "latent_image": [
+            "60",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced"
+      },
+      "41": {
+        "inputs": {
+          "noise_seed": 918242227661407
+        },
+        "class_type": "RandomNoise"
+      },
+      "42": {
+        "inputs": {
+          "model": [
+            "67",
+            0
+          ],
+          "conditioning": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "BasicGuider"
+      },
+      "43": {
+        "inputs": {
+          "scheduler": "beta",
+          "steps": 8,
+          "denoise": 1,
+          "model": [
+            "67",
+            0
+          ]
+        },
+        "class_type": "BasicScheduler"
+      },
+      "45": {
+        "inputs": {
+          "prepend_text": "",
+          "multiline_text": "A fair-skinned blonde woman with long straight center-parted hair, soft oval face, blue almond-shaped eyes, defined lashes, full glossy lips, natural freckles, narrow waist and very full rounded bust, wearing a fitted pastel pink ribbed long-sleeve crop top and high-waisted denim, captured on a mobile phone camera, handheld selfie style, slight wide-angle distortion, casual framing, warm indoor lighting, natural posture, modern apartment background, unfiltered realistic texture.\nA curvy blonde with smooth straight hair, softly arched brows, light blue eyes, refined nose, balanced facial symmetry, slim waist and prominent bust, dressed in a satin deep-neck neutral-toned top and fitted jeans, mobile phone photo taken casually indoors, natural lamp lighting, mild grain, imperfect focus, relaxed creator-style pose, non-professional home setting.\nMirror selfie of a fair blonde woman with long hair, subtle freckles, full lips, almond eyes, hourglass silhouette with a heavy natural bust, wearing a form-fitting lounge top and denim, captured using a mobile phone held in one hand, mirror visible, casual angle, slight motion blur, warm ambient lighting, everyday realism.\nA blonde creator with polished makeup, smooth skin texture, oval face, blue eyes, full lashes, slim waist and very full chest, wearing a silky robe loosely styled over a minimal inner top, casual mobile phone capture, early morning window light, handheld framing, intimate home vibe, non-studio, natural shadows.\nAthleisure look of a curvy blonde woman with long straight hair, soft facial features, narrow waist and pronounced bust, wearing a sculpting long-sleeve athletic top and high-rise leggings, taken on a smartphone camera, casual standing pose, indoor room lighting, natural color balance, lifestyle selfie aesthetic.\nAn elegant blonde woman with fair skin, natural freckles, defined brows, glossy lips, full bust and hourglass proportions, wearing a fitted date-night top with subtle neckline, casual mobile photo indoors, relaxed seated pose, warm household lighting, slightly imperfect framing, creator-style realism.\nPastel bedroom selfie of a blonde model with smooth straight hair, blue eyes, oval face, slim waist and full rounded bust, dressed in a light pink fitted top and soft lounge bottoms, mobile phone front-camera capture, handheld angle, cozy bedside lighting, natural skin texture, casual atmosphere.\nWindow-light mobile portrait of a fair blonde woman with long hair, almond eyes, narrow waist and prominent bust, wearing a neutral-toned fitted top, captured on a smartphone, natural daylight, soft shadows, slight exposure variation, calm expression, minimal interior, non-professional style.\nCasual denim mirror pose featuring a blonde creator with soft facial symmetry, freckles, glossy lips, slim waist and heavy natural bust, wearing high-waisted jeans and a fitted long-sleeve top, mobile phone mirror selfie, relaxed hand placement, warm indoor lighting, realistic everyday look.\nEvening lounge selfie of a curvy blonde woman with smooth straight hair, blue eyes, refined but natural makeup, pronounced hourglass figure and full bust, wearing a coordinated soft-fabric lounge set, captured on a mobile phone, handheld casual angle, ambient room lighting, authentic creator vibe.\n\n\n",
+          "append_text": "",
+          "start_index": 2,
+          "max_rows": 7
+        },
+        "class_type": "CR Prompt List"
+      },
+      "60": {
+        "inputs": {
+          "resolution": "768x1280 (3:5)",
+          "batch_size": 1,
+          "width_override": 0,
+          "height_override": 0,
+          "aspect_ratio_lock": "Unlocked",
+          "latent_channels": 4,
+          "downsample_factor": "auto",
+          "invert_ratios": "No"
+        },
+        "class_type": "UniversalLatent"
+      },
+      "67": {
+        "inputs": {
+          "model": [
+            "11",
+            0
+          ],
+          "clip": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "Power Lora Loader (rgthree)"
+      }
+    }
+  }
+}
